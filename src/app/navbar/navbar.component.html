@@ -1,3 +1,20 @@
-<p>
-  navbar works!
-</p>
+<div class="navbar">
+  <div class="search-group">
+	  <img class="skycast-logo" src="assets/skycast_logo.jpg"> <!-- Borrowed from now defunct company https://twitter.com/skycastpoles -->
+	  <div class="search-bar form-group">
+	    <input placeholder="Show me the weather in..." autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+	  </div>
+	  <!-- The below "Locate me" feature requires https -->
+	  <!-- <div (click)="setCurrentPosition()" class="geolocation-button">
+	  	<img class="geolocation-logo" src="assets/nearby-circle-blue-512.png">
+	  	<p>Locate me</p>
+	  </div> -->
+  </div>
+  <div class="search-history">
+  	  <p>Recently searched: <p>
+  	  <button *ngFor="let search of searchHistory" (click)="recentSearch(search)">
+  	  	{{ search }}
+  	  </button>
+  </div>
+  <div id="places-attributions"></div>
+</div>

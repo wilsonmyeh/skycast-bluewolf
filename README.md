@@ -15,7 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Technologies
 
-* Google Maps JavaScript API
+* Google Places JavaScript API
 * Dark Sky API
 * Node
 	* npm

@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AgmCoreModule } from '@agm/core';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,8 +21,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
 	  FormsModule,
+    ReactiveFormsModule,
 	  HttpClientModule,
     AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.GOOGLE_MAPS_API_KEY,
+      libraries: ["places"]
+    }),
   ],
   declarations: [
     AppComponent,
