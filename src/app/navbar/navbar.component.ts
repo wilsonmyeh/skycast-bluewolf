@@ -4,6 +4,7 @@ import { ElementRef, NgZone, Component, OnInit, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms';
 import { } from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { WeatherService } from 'app/weather/weather.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +23,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private weatherService: WeatherService,
   ) {}
 
   ngOnInit() {
@@ -85,7 +87,7 @@ export class NavbarComponent implements OnInit {
       console.log(this.searchHistory);
     }
 
-    
+    this.weatherService.getWeatherData(this.latitude, this.longitude).then(data => {console.log(data)});
   }
 
 }

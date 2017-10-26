@@ -43,6 +43,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Uncomment the "serve" field under "defaults", replacing PORT_HERE and "IP_HERE" with your server's port and host
 3. Edit src/environments/environment.ts
 4. Uncomment the GOOGLE_MAPS_API_KEY field and replace "API_KEY_HERE" with your google maps api key
+5. Uncomment the REST_HOST field and replace "REST_HOST_HERE" with your api endpoint, e.g. http://localhost:3000
 
 ## Development server
 

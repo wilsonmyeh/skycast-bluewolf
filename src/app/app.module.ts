@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
@@ -22,7 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
 	  FormsModule,
     ReactiveFormsModule,
-	  HttpClientModule,
+	  HttpModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.GOOGLE_MAPS_API_KEY,

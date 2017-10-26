@@ -1,9 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Headers, Http } from '@angular/http';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class AjaxService {
 
-  constructor(private http: HttpClient) { }
+  private url: string = environment.REST_HOST;
+  private headers = new Headers({'Content-Type': 'application/json'});
 
+  constructor(private http: Http) { }
+
+  getWeatherData(latitude: number, longitude: number): Promise<string[]> {
+  	return this.http
+  		.post(this.url+'/getWeatherData', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
+  		.toPromise()
+  		.then(res => res.json().data as string[])
+  		.catch(this.handleError)
+  }
+
+  private handleError(error: any): Promise<any> {
+	  console.error('An error occurred', error); // for demo purposes only
+	  return Promise.reject(error.message || error);
+  }
 }
