@@ -1,10 +1,52 @@
-# SkycastBluewolf
+# Skycast Bluewolf
+
+Simple weather app that allows users to retrieve current and historic data about any location that the users search.
+
+Coding sample for Developer I position
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
 
+## Features
+
+* Search locations and addresses with autocomplete
+* Retrieve location's relevant weather data
+* Charts of historic weather data
+* Search locations saved across sessions
+
+## Technologies
+
+* Google Maps JavaScript API
+* Dark Sky API
+* Node
+	* npm
+* Angular
+	* Jasmine (JavaScript Unit Testing Framework)
+	* Karma (JavaScript Test Runner)
+	* Protractor (JavaScript E2E Testing Framework)
+	* Webpack (JavaScript Resource Precompiler)
+	* ng-bootstrap (Twitter Bootstrap for Angular)
+* Chart.js
+* Express
+
+## Setup
+
+### Installation
+
+1. Install Node.js® and npm if they are not already on your machine.
+2. Clone the repository to your desired location on your host server
+3. Change directory into the newly cloned repository's root folder
+4. Run 'npm install' to install all package dependencies
+
+### Configuration
+
+1. Edit .angular-cli.json
+2. Uncomment the "serve" field under "defaults", replacing PORT_HERE and "IP_HERE" with your server's port and host
+3. Edit src/environments/environment.ts
+4. Uncomment the GOOGLE_MAPS_API_KEY field and replace "API_KEY_HERE" with your google maps api key
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
