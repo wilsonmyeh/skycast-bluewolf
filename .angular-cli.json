@@ -58,6 +58,10 @@
     "class": {
       "spec": false
     },
+    // "serve": {
+    //   "port": PORT_HERE,
+    //   "host": "IP_HERE"
+    // },
     "component": {}
   }
 }
