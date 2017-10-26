@@ -10,12 +10,20 @@ export class AjaxService {
 
   constructor(private http: Http) { }
 
-  getWeatherData(latitude: number, longitude: number): Promise<string[]> {
+  getWeatherForecast(latitude: number, longitude: number): Promise<string[]> {
   	return this.http
-  		.post(this.url+'/getWeatherData', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
+  		.post(this.url+'/getWeatherForecast', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
   		.toPromise()
-  		.then(res => {console.log(res.json()); return res.json().data as string[];})
+  		.then(res => res.json())
   		.catch(this.handleError);
+  }
+
+  getWeatherPastYear(latitude: number, longitude: number): Promise<string[]> {
+    return this.http
+      .post(this.url+'/getWeatherPastYear', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

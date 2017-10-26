@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var moment = require('moment');
+var after = require('after');
 
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", process.env.HOST_NAME);
@@ -8,10 +10,33 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.post('/getWeatherData', function(req, res, next) {
+router.post('/getWeatherForecast', function(req, res, next) {
   request({
     uri: 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API_KEY + '/' + req.body.latitude + ',' + req.body.longitude
   }).pipe(res);
+});
+
+router.post('/getWeatherPastYear', function(req, res, next) {
+  var finished = after(12, sendArray);
+  var weatherArray = [];
+  var time = moment();
+  for (var i = 0; i < 12; ++i) {
+  	request(
+	    'https://api.darksky.net/forecast/' +
+	    process.env.DARK_SKY_API_KEY + '/' +
+	    req.body.latitude + ',' +
+	    req.body.longitude + ',' +
+	    time.subtract(1, 'years').unix(),
+		function(error, response, body) {
+			weatherArray.push(body);
+			finished();
+		}
+	);
+  }
+
+  function sendArray() {
+  	res.json(weatherArray);
+  }
 });
 
 module.exports = router;

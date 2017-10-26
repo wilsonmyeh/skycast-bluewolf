@@ -70,13 +70,13 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  // TODO: refactor into WeatherService?
   // display weather data of the geographical coordinates, save as recently searched
   private processPlace(place) {
     //verify result
     if (place.geometry === undefined || place.geometry === null) {
       return;
     }
-    console.log(place);
     //set latitude, longitude
     this.latitude = place.geometry.location.lat();
     this.longitude = place.geometry.location.lng();
@@ -84,10 +84,10 @@ export class NavbarComponent implements OnInit {
     if (this.searchHistory.indexOf(place.formatted_address) === -1) {
       this.searchHistory.push(place.formatted_address);
       localStorage.setItem("searchHistory", JSON.stringify(this.searchHistory));
-      console.log(this.searchHistory);
     }
 
-    this.weatherService.getWeatherData(this.latitude, this.longitude).then(data => {console.log(data)});
+    this.weatherService.getWeatherForecast(this.latitude, this.longitude).then(data => {console.log(data)});
+    this.weatherService.getWeatherPastYear(this.latitude, this.longitude).then(data => {console.log(data)});
   }
 
 }
