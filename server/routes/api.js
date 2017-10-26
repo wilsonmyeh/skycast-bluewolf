@@ -9,10 +9,9 @@ router.use(function(req, res, next) {
 });
 
 router.post('/getWeatherData', function(req, res, next) {
-  // request({
-  //   uri: 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API_KEY + '/' + req.body.latitude + ',' + req.body.longitude
-  // }).pipe(res);
-  res.send("OKAY");
+  request({
+    uri: 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API_KEY + '/' + req.body.latitude + ',' + req.body.longitude
+  }).pipe(res);
 });
 
 module.exports = router;
