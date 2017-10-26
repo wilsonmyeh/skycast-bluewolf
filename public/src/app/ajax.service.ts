@@ -14,8 +14,8 @@ export class AjaxService {
   	return this.http
   		.post(this.url+'/getWeatherData', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
   		.toPromise()
-  		.then(res => res.json().data as string[])
-  		.catch(this.handleError)
+  		.then(res => {console.log(res.json()); return res.json().data as string[];})
+  		.catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
