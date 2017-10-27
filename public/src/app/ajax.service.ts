@@ -10,7 +10,7 @@ export class AjaxService {
 
   constructor(private http: Http) { }
 
-  getWeatherForecast(latitude: number, longitude: number): Promise<string[]> {
+  pullWeatherForecast(latitude: number, longitude: number): Promise<string[]> {
   	return this.http
   		.post(this.url+'/getWeatherForecast', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
   		.toPromise()
@@ -18,7 +18,7 @@ export class AjaxService {
   		.catch(this.handleError);
   }
 
-  getWeatherPastYear(latitude: number, longitude: number): Promise<string[]> {
+  pullWeatherPastYear(latitude: number, longitude: number): Promise<string[]> {
     return this.http
       .post(this.url+'/getWeatherPastYear', JSON.stringify({latitude: latitude, longitude: longitude}), {headers: this.headers})
       .toPromise()

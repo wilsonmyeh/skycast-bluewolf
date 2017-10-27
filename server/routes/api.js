@@ -26,15 +26,19 @@ router.post('/getWeatherPastYear', function(req, res, next) {
 	    process.env.DARK_SKY_API_KEY + '/' +
 	    req.body.latitude + ',' +
 	    req.body.longitude + ',' +
-	    time.subtract(1, 'years').unix(),
+	    time.subtract(1, 'months').unix(),
 		function(error, response, body) {
-			weatherArray.push(body);
+			weatherArray.push(JSON.parse(body));
 			finished();
 		}
 	);
   }
 
   function sendArray() {
+    weatherArray.sort(function(a,b) {return a.currently.time - b.currently.time});
+    for (var i = 0; i < 12; ++i) {
+      weatherArray[i] = JSON.stringify(weatherArray[i]);
+    }
   	res.json(weatherArray);
   }
 });

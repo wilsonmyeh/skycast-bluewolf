@@ -1,0 +1,9 @@
+.cur-weather, .hourly-graph, .daily-graph, .monthly-graph {
+	margin: 20px auto;
+	width: 100%;
+	max-width: 1000px;
+}
+
+h4 {
+	margin: 20px;
+}

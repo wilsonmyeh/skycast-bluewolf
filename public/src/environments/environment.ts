@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  // GOOGLE_MAPS_API_KEY: "API_KEY_HERE",
-  // REST_HOST: "REST_HOST_HERE",
+  GOOGLE_MAPS_API_KEY: "AIzaSyCqRBpOKBJTTymhlpWAjfbMS8Msg77nJvU",
+  REST_HOST: "http://52.8.228.32:8080/api",
 };

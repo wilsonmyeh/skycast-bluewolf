@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { } from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { WeatherService } from 'app/weather/weather.service';
+import { Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ export class NavbarComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public searchHistory: string[];
+  public location: string;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -25,6 +27,7 @@ export class NavbarComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private weatherService: WeatherService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -85,9 +88,14 @@ export class NavbarComponent implements OnInit {
       this.searchHistory.push(place.formatted_address);
       localStorage.setItem("searchHistory", JSON.stringify(this.searchHistory));
     }
+    this.location = place.formatted_address;
+    this.weatherService.setLocation(this.location);
 
-    this.weatherService.getWeatherForecast(this.latitude, this.longitude).then(data => {console.log(data)});
-    this.weatherService.getWeatherPastYear(this.latitude, this.longitude).then(data => {console.log(data)});
+    Promise.all([
+      this.weatherService.pullWeatherForecast(this.latitude, this.longitude),
+      this.weatherService.pullWeatherPastYear(this.latitude, this.longitude),
+    ]).then(data => {
+      this.ngZone.run(() => { this.router.navigate(['/weatherinfo', this.location]) });
+    });
   }
-
 }

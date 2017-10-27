@@ -1,3 +1,91 @@
-<p>
-  weather-info works!
-</p>
+<h2>{{ location }}</h2>
+
+<h4>Currently:</h4>
+<div class="cur-weather">
+	<div class="row">
+		<div class="col-md-4">Skies: {{ summary }}</div>
+		<div class="col-md-4">Temperature: {{ temperature }} F</div>
+		<div class="col-md-4">Chance of Rain: {{ precipProbability }}%</div>
+		<div class="col-md-4">UV Index: {{ uvIndex }}</div>
+		<div class="col-md-4">Humidity: {{ humidity }}</div>
+		<div class="col-md-4">Visibility: {{ visibility }}</div>
+	</div>
+</div>
+
+<h4>Hourly Forecast:</h4>
+<div class="hourly-graph">
+	<div class="row">
+	  <div class="col-md-6">
+	    <div style="display: block;">
+	    	<canvas baseChart width="400" height="400"
+	                [datasets]="hourlyChartData"
+	                [labels]="hourlyChartLabels"
+	                [options]="lineChartOptions"
+	                [legend]="lineChartLegend"
+	                [chartType]="lineChartType"></canvas>
+	    </div>
+	  </div>
+	  <div class="col-md-6">
+	    <table class="table table-responsive table-condensed">
+	      <tr>
+	        <th *ngFor="let label of hourlyChartLabels">{{label}}</th>
+	      </tr>
+	      <tr *ngFor="let d of hourlyChartData">
+	        <td *ngFor="let label of hourlyChartLabels; let j=index">{{d && d.data[j]}}</td>
+	      </tr>
+    	</table>
+  	  </div>
+  	</div>
+</div>
+
+<h4>Weekly Forecast:</h4>
+<div class="daily-graph">
+	<div class="row">
+  		<div class="col-md-6">
+    		<div style="display: block;">
+				<canvas baseChart width="400" height="400"
+                [datasets]="dailyChartData"
+                [labels]="dailyChartLabels"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"></canvas>
+    		</div>
+  		</div>
+  		<div class="col-md-6">
+    		<table class="table table-responsive table-condensed">
+      			<tr>
+        			<th *ngFor="let label of dailyChartLabels">{{label}}</th>
+      			</tr>
+      			<tr *ngFor="let d of dailyChartData">
+        			<td *ngFor="let label of dailyChartLabels; let j=index">{{d && d.data[j]}}</td>
+      			</tr>
+    		</table>
+  		</div>
+	</div>
+</div>
+
+<h4>Past Year:</h4>
+<div class="monthly-graph">
+	<div class="row">
+  		<div class="col-md-6">
+    		<div style="display: block;">
+    			<canvas baseChart width="400" height="400"
+                [datasets]="monthlyChartData"
+                [labels]="monthlyChartLabels"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"></canvas>
+    		</div>
+  		</div>
+  		<div class="col-md-6">
+    		<table class="table table-responsive table-condensed">
+      			<tr>
+        			<th *ngFor="let label of monthlyChartLabels">{{label}}</th>
+      			</tr>
+      			<tr *ngFor="let d of monthlyChartData">
+        			<td *ngFor="let label of monthlyChartLabels; let j=index">{{d && d.data[j]}}</td>
+      			</tr>
+    		</table>
+		</div>
+	</div>
+</div>
