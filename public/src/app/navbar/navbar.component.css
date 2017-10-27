@@ -54,3 +54,11 @@
 	margin-right: 20px;
 	margin-bottom: 10px;
 }
+
+.dark-sky-creds {
+	position: absolute;
+	font-size: 12px;
+	font-weight: bold;
+	top: 5px;
+	right: 10px;
+}
